@@ -1,0 +1,32 @@
+---
+- name: User management tasks
+  hosts: all
+  become: yes
+  tasks:
+
+    # Create a user
+    - name: Create a new user
+      user:
+        name: johndoe
+        state: present
+        shell: /bin/bash
+        create_home: yes
+
+    # Set a password for the user
+    - name: Set password for johndoe
+      user:
+        name: johndoe
+        password: "{{ 'peque' | password_hash('sha512') }}"
+
+    # Add user to a group
+    - name: Add user johndoe to the sudo group
+      user:
+        name: johndoe
+        groups: sudo
+        append: yes
+
+    # Ensure a user is absent
+    - name: Remove user johndoe
+      user:
+        name: johndoe
+        state: absent

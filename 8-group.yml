@@ -1,0 +1,17 @@
+---
+- name: Group management tasks
+  hosts: all
+  become: yes
+  tasks:
+
+    # Create a group
+    - name: Create a new group
+      group:
+        name: devops
+        state: present
+
+    # Remove a group
+    - name: Remove the devops group
+      group:
+        name: devops
+        state: absent

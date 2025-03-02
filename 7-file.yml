@@ -1,0 +1,24 @@
+---
+- name: Manage files on Debian systems
+  hosts: all
+  become: yes
+  tasks:
+    
+    # Create an empty file or update its timestamp
+    - name: Ensure the file exists
+      file:
+        path: /var/www/html/index.html
+        state: touch
+
+    # Set permissions for a file
+    - name: Set file permissions
+      file:
+        path: /var/www/html/index.html
+        mode: '0644'
+
+    # Change the owner and group of the file
+    - name: Set file owner and group
+      file:
+        path: /var/www/html/index.html 
+        owner: www-data
+        group: www-data

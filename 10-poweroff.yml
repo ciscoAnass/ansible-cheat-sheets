@@ -1,0 +1,15 @@
+---
+- name: Reboot and Power off the system
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Reboot the system
+      ansible.builtin.reboot:
+        reboot_timeout: 600
+        test_command: whoami
+
+    - name: Power off the system
+      ansible.builtin.shutdown:
+        reboot: no
+        msg: "Powering off the system"

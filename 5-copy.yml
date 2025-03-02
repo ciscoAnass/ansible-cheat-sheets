@@ -1,0 +1,12 @@
+---
+- name: Copiar un archivo con permisos y propietario como root
+  hosts: all
+  become: yes  
+  tasks:
+    - name: Copiar un archivo desde el controlador
+      copy:
+        src: /home/admin/ansible/index/index.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: '0644'

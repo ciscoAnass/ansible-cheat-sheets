@@ -1,0 +1,6 @@
+---
+- name: Ejecutar un comando simple
+  hosts: all
+  tasks:
+    - name: Mostrar la fecha actual
+      command: date

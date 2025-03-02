@@ -1,0 +1,23 @@
+---
+- name: Gestionar Apache2 con APT
+  hosts: all
+  become: yes
+  tasks:
+    - name: Actualizar la caché de paquetes
+      apt:
+        update_cache: yes
+
+    - name: Instalar Apache2
+      apt:
+        name: apache2
+        state: present
+
+    - name: Eliminar Apache2 (manteniendo configuración)
+      apt:
+        name: apache2
+        state: absent
+
+    - name: Purgar Apache2 (eliminar todo)
+      apt:
+        name: apache2
+        purge: yes

@@ -1,0 +1,6 @@
+---
+- name: Ejecutar un comando simple con shell
+  hosts: all
+  tasks:
+    - name: Mostrar la lista de archivos en el directorio actual
+      shell: echo "Anass" > /tmp/anass.txt
