@@ -1,0 +1,8 @@
+---
+- name: configurar servidores mariadb
+  hosts: all
+  roles:
+    - mariadb
+
+
+
