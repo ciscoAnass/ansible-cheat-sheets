@@ -1,0 +1,21 @@
+---
+- name: Create user and group with encrypted password using mkpasswd
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Generate encrypted password
+      ansible.builtin.command: "mkpasswd --method=SHA-512 anass"
+      register: hashed_password
+
+    - name: Create group
+      ansible.builtin.group:
+        name: anass
+
+    - name: Create user with encrypted password
+      ansible.builtin.user:
+        name: anass
+        password: "{{ hashed_password.stdout }}"
+        groups: anass
+
+
