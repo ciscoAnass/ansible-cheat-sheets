@@ -1,0 +1,5 @@
+---
+# vars file for roles/apache
+apache_package: apache2
+apache_service: apache2
+index_file: /var/www/html/index.html

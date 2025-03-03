@@ -1,0 +1,14 @@
+#---
+# tasks file for roles/mariadb
+- name: Instalar Mariadb
+  apt:
+    name: mariadb-server
+    state: present
+  become: yes
+
+- name: Habilitar MariaDb
+  service:
+    name: mariadb
+    state: started
+    enabled: yes
+  become: yes

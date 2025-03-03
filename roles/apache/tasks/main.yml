@@ -1,0 +1,27 @@
+---
+# tasks file for roles/apache
+- name: Install apache
+  apt:
+    name: "{{apache_package}}"
+    state: present
+  become: yes
+
+- name: systemctl start/enable apache
+  service:
+    name: "{{apache_service}}"
+    state: started
+    enabled: yes
+  become: yes
+
+- name: copy index
+  copy:
+    src: index.html
+    dest: "{{ index_file }}"
+  become: yes
+
+- name: usar plantilla
+  template:
+    src: index.html.j2
+    dest: "{{ index_file }}"
+  notify: Restart apache2
+  become: yes
